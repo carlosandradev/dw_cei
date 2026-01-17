@@ -1,0 +1,381 @@
+:root {
+    /* User Palette */
+    --retro-gray: #C4C4BF;       /* Background */
+    --retro-dark-gray: #8A8A85;  /* Derived Darker Gray for shadows (approx 30% darker) */
+    --retro-white: #F7F7F2;      /* White */
+    --retro-black: #1C1C1A;      /* Headings/Dark */
+    --retro-blue: #A9D69F;       /* Mapping Secondary Green to Title Bars for the theme */
+    --retro-accent: #00FC33;     /* Accent */
+    --retro-highlight: #FCC700;  /* Highlight */
+    --retro-link: #4D9FFC;       /* Link */
+    --retro-text: #22221F;       /* Primary Text */
+    
+    /* 3D Borders */
+    --border-light: #F7F7F2;
+    --border-dark: #8A8A85;      /* Using derived dark gray */
+    --border-darker: #1C1C1A;    /* Using Headings color for darkest shadow */
+    
+    /* Typography */
+    --font-pixel: 'Press Start 2P', cursive;
+    --font-terminal: 'VT323', monospace;
+    --font-main: 'Roboto Mono', monospace;
+    
+    /* Specific overrides */
+    --title-bar-start: #425857;  /* User requested Teal/Gray */
+    --title-bar-end: #546e6d;    /* Slightly lighter version for gradient */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main);
+    background-color: var(--retro-gray);
+    color: var(--retro-text);
+    height: 100vh;
+    overflow: hidden;
+}
+
+#app-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+/* Sidebar Styles */
+#sidebar {
+    width: 120px;
+    background-color: var(--retro-gray);
+    border-right: 2px solid var(--border-light); /* Bevel effect part 1 */
+    box-shadow: 2px 0 0 var(--border-dark); /* Bevel effect part 2 */
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+    z-index: 10;
+}
+
+.logo-area {
+    padding: 2px; /* reduced from 10px to maximize logo size */
+    text-align: center;
+    border-bottom: 2px solid var(--border-dark);
+    box-shadow: 0 1px 0 var(--border-light);
+    margin-bottom: 5px;
+}
+
+.logo-ca {
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--retro-blue);
+    color: var(--retro-blue);
+    font-family: var(--font-pixel);
+    text-shadow: 2px 2px var(--retro-black); /* Simple shadow */
+    font-size: 32px; /* Adjusted for pixel font */
+    letter-spacing: -2px;
+}
+
+.retro-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
+}
+
+.retro-btn {
+    width: 100%;
+    min-height: 70px; /* Increased from 60px */
+    padding: 8px 2px;
+    background-color: var(--retro-gray);
+    border: none;
+    box-shadow: inset 2px 2px 0 var(--border-light),
+                inset -2px -2px 0 var(--border-dark),
+                2px 2px 5px rgba(0,0,0,0.2); /* Drop shadow */
+    font-family: var(--font-pixel);
+    font-size: 8px; /* Pixel font is large */
+    line-height: 1.5;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none; /* For when it's an anchor */
+    color: var(--retro-text); /* Ensure text color is consistent */
+}
+
+.retro-btn:active {
+    box-shadow: inset 2px 2px 0 var(--border-dark),
+                inset -2px -2px 0 var(--border-light);
+    transform: translate(1px, 1px);
+}
+
+/* Main Desktop Area */
+#desktop {
+    flex-grow: 1;
+    position: relative;
+    /* Background Image */
+    background-image: url('../img/skyebckg.svg');
+    background-repeat: repeat;
+    background-size: auto; /* Ensure it tiles at original size */
+    
+    padding: 10px;
+    overflow: hidden;
+}
+
+.top-banner {
+    background-color: #ffffff; 
+    /* Gradient text effect simulated nicely with CSS? Maybe just keep it simple first */
+    /* Looking at the image, it's white text on blue background actually? 
+       Wait, the image says "The Best Windows 95 Information..." in blue italic text on a white/cloudy strip. */
+    background: rgba(255, 255, 255, 0.6);
+    padding: 10px;
+    text-align: center;
+    font-family: var(--font-terminal);
+    font-weight: bold;
+    color: var(--retro-link);
+    font-size: 24px;
+    border: 2px solid var(--retro-gray);
+    box-shadow: inset 1px 1px 0 var(--border-dark),
+                inset -1px -1px 0 var(--border-light);
+    margin-bottom: 20px;
+    overflow: hidden; /* Ensure marquee text doesn't spill out */
+    white-space: nowrap;
+}
+
+/* Scrollbar styling for webkit */
+::-webkit-scrollbar {
+  width: 16px;
+  background: var(--retro-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--retro-gray);
+  box-shadow: inset 1px 1px 0 var(--border-light),
+    inset -1px -1px 0 var(--border-dark);
+}
+
+::-webkit-scrollbar-button {
+  background: var(--retro-gray);
+  width: 16px;
+  height: 16px;
+  box-shadow: inset 1px 1px 0 var(--border-light),
+    inset -1px -1px 0 var(--border-dark);
+}
+
+/* Window Styles */
+.windows-container {
+    display: flex;
+    gap: 10px;
+    height: calc(100% - 60px); /* Subtract banner height approx */
+}
+
+.window-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    position: relative; /* Enable absolute positioning of children (GIFs) */
+}
+
+.window-column.large {
+    padding: 0 60px 250px 60px; /* Reduced bottom padding to make them taller again */
+    justify-content: flex-start;
+}
+
+.window {
+    background-color: var(--retro-gray);
+    border: 2px solid var(--retro-gray);
+    box-shadow: inset 1px 1px 0 var(--border-light),
+                inset -1px -1px 0 var(--border-darker),
+                inset 2px 2px 0 var(--border-light),
+                inset -2px -2px 0 var(--border-dark),
+                2px 2px 5px rgba(0,0,0,0.3);
+    padding: 3px;
+    display: flex;
+    flex-direction: column;
+}
+
+.window.large {
+    flex: 2;
+}
+
+.title-bar {
+    background: linear-gradient(90deg, var(--title-bar-start), var(--title-bar-end));
+    padding: 3px 2px 3px 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--retro-white);
+    font-weight: bold;
+    font-family: var(--font-main);
+    font-size: 14px; /* Increased for legibility */
+    letter-spacing: 0px;
+}
+
+.title-bar-text {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.title-bar-controls {
+    display: flex;
+    gap: 2px;
+}
+
+.title-btn {
+    width: 16px;
+    height: 14px;
+    background-color: var(--retro-gray);
+    border: 1px solid;
+    border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+    font-size: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2px;
+    cursor: auto;
+}
+
+.title-btn:active {
+    border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+}
+
+.window-body {
+    margin-top: 2px;
+    background-color: var(--retro-white);
+    border: 2px solid;
+    border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+    flex-grow: 1;
+    overflow: auto;
+    padding: 10px;
+    position: relative;
+    color: var(--retro-text);
+}
+
+.music-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    font-family: var(--font-terminal);
+    font-size: 16px;
+}
+
+.album-info {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.album-art-placeholder {
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--retro-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.archive-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+    padding: 5px 0;
+}
+
+.win95-btn {
+    padding: 2px 8px;
+    border: 1px solid;
+    border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+    background: var(--retro-gray);
+    font-family: var(--font-pixel);
+    font-size: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 1px 1px 0 var(--retro-black);
+}
+
+.win95-btn:active {
+    border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+    box-shadow: none;
+    transform: translate(1px, 1px);
+}
+
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
+}
+
+.newsletter-input-group {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.newsletter-input-group input {
+    flex-grow: 1;
+    border: 2px solid;
+    border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+    padding: 3px;
+    height: 24px;
+    font-family: var(--font-terminal);
+    font-size: 16px;
+}
+
+/* Active Page Animation */
+@keyframes pixel-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+.retro-btn.active img {
+    animation: pixel-bounce 1.5s infinite ease-in-out;
+}
+
+.retro-btn.active {
+    background-color: var(--retro-white); /* Optional: Highlight background for active state */
+    box-shadow: inset 2px 2px 0 var(--border-dark),
+                inset -2px -2px 0 var(--border-light); /* Inset shadow to look pressed */
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+}
+
+.banner-content {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 15s linear infinite;
+    white-space: nowrap;
+}
+/* Blog, Portfolio, and Courses Grid Styles */
+.blog-grid, .portfolio-grid, .courses-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    overflow-y: auto;
+    height: calc(100% - 60px);
+}
+
+.content-window {
+    width: 280px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.media-container {
+    text-align: center;
+    margin-bottom: 10px;
+    border: 2px solid var(--border-dark);
+    padding: 5px;
+    background: white;
+}
