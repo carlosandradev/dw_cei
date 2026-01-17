@@ -379,3 +379,164 @@ body {
     padding: 5px;
     background: white;
 }
+
+/* --- Responsive & Functionality Styles --- */
+
+
+/* Footer Badges (GIFs) */
+/* Footer Badges (GIFs) */
+.retro-footer-badges {
+    display: flex;
+    width: 100%;
+    margin-top: 30px;
+    position: relative;
+    z-index: 5;
+    /* Desktop default: space-between to mimic columns */
+    justify-content: space-between; 
+    align-items: flex-end;
+}
+
+.retro-footer-badges img {
+    height: 40px; /* Base visible size */
+    width: auto;
+    display: block;
+}
+
+/* Start Button (Mobile Menu Trigger) */
+#start-btn {
+    display: none; /* Hidden on desktop */
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 2000;
+    padding: 10px 15px;
+    font-family: var(--font-pixel);
+    font-size: 16px;
+    background: var(--retro-gray);
+    color: black;
+    border: 2px solid var(--retro-white);
+    box-shadow: 2px 2px 0 var(--retro-black), inset 1px 1px 0 var(--retro-white);
+    cursor: pointer;
+    align-items: center;
+    gap: 5px;
+}
+
+#start-btn:active, #start-btn.active {
+    box-shadow: inset 2px 2px 0 var(--retro-black), inset -1px -1px 0 var(--retro-white);
+    background: #c0c0c0; /* Slightly darker */
+}
+
+/* Maximized Window State */
+.window.maximized {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1000;
+    margin: 0 !important;
+}
+
+/* --- Mobile Media Queries --- */
+@media (max-width: 768px) {
+    /* Layout Adjustments */
+    #app-container {
+        flex-direction: column;
+    }
+
+    /* Sidebar (Mobile Menu) */
+    #sidebar {
+        position: fixed;
+        top: 0;
+        left: -250px; /* Hidden by default */
+        width: 250px;
+        height: 100vh;
+        z-index: 1500;
+        transition: left 0.3s ease-in-out;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+    }
+
+    #sidebar.active {
+        left: 0; /* Slide in */
+    }
+
+    /* Mobile Menu Icons Sizing */
+    .retro-btn img {
+        width: 42px !important;
+        height: 42px !important;
+        margin-bottom: 5px;
+    }
+
+    /* Mobile Logo Adjustment */
+    .logo-be, .logo-ca, .logo-area img {
+        max-width: 60%; 
+        width: 150px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    /* Show Start Button */
+    #start-btn {
+        display: flex;
+    }
+
+    /* Desktop Area Adjustments */
+    #desktop {
+        margin-left: 0; /* Remove sidebar space */
+        padding-bottom: 60px; /* Space for Start button */
+        width: 100%;
+        height: 100vh;
+        overflow-y: auto;
+    }
+
+    /* Stack Windows Vertically */
+    .windows-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .window-column {
+        width: 100% !important;
+        height: auto;
+        min-height: 300px;
+        margin-bottom: 20px; /* Separator margin */
+        padding-bottom: 60px; /* Keep space for GIFs absolute pos */
+        position: relative;
+    }
+
+    /* Reset padding for large column if needed, or specific override */
+    .window-column.large {
+        width: 100% !important;
+        padding: 0; /* Reset padding per request */
+        margin-bottom: 20px;
+    }
+    
+    /* Ensure GIFs stay at bottom of their column blocks */
+    .window-column > div[style*="position: absolute"] {
+        bottom: 10px !important;
+    }
+
+    /* Horizontal Slider for Grids (Portfolio, Blog, Courses) */
+    .portfolio-grid, .blog-grid, .courses-grid {
+        display: flex;
+        flex-wrap: nowrap; /* Prevent wrapping */
+        overflow-x: auto; /* Enable horizontal scroll */
+        scroll-snap-type: x mandatory; /* Snap to elements */
+        justify-content: flex-start; /* Align left */
+        gap: 15px;
+        padding-bottom: 20px; /* Space for scrollbar */
+    }
+
+    .content-window {
+        scroll-snap-align: center; /* Snap to center */
+        flex: 0 0 85%; /* Show 85% of width to indicate scrollability */
+        width: 85% !important; /* Force width */
+        margin-right: 15px;
+    }
+
+    /* Footer Badges Horizontal Layout */
+    .retro-footer-badges {
+        flex-direction: row; /* Force horizontal */
+        flex-wrap: wrap; /* Allow wrapping if needed */
+    }
+}
