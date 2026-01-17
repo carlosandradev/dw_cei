@@ -386,20 +386,24 @@ body {
 /* Footer Badges (GIFs) */
 /* Footer Badges (GIFs) */
 .retro-footer-badges {
-    display: flex;
+    position: absolute; /* Flotar sobre el contenido */
+    bottom: 10px;       /* Pegado al fondo */
+    left: 0;
     width: 100%;
-    margin-top: 30px;
-    position: relative;
-    z-index: 5;
-    /* Desktop default: space-between to mimic columns */
-    justify-content: space-between; 
+    display: flex;
+    justify-content: space-between; /* Netscape a la izq, IE a la der */
     align-items: flex-end;
+    padding: 0 20px;    /* Un poco de margen lateral */
+    z-index: 10;        /* Asegurar que esté por encima del fondo */
+    pointer-events: none; /* Para que no bloquee clicks en ventanas si se solapan */
 }
 
+/* Permitir clicks en las imágenes si fuera necesario */
 .retro-footer-badges img {
-    height: 40px; /* Base visible size */
+    height: 40px;
     width: auto;
     display: block;
+    pointer-events: auto; 
 }
 
 /* Start Button (Mobile Menu Trigger) */
@@ -536,7 +540,14 @@ body {
 
     /* Footer Badges Horizontal Layout */
     .retro-footer-badges {
+        position: relative; /* Reset from absolute */
+        bottom: auto;
+        left: auto;
+        padding: 0;
+        margin-top: 20px;
         flex-direction: row; /* Force horizontal */
         flex-wrap: wrap; /* Allow wrapping if needed */
+        justify-content: center; /* Center on mobile */
+        pointer-events: auto;
     }
 }
