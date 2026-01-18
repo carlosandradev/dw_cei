@@ -1,17 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Contador
-    let contador = localStorage.getItem('visitas');
-
-    if (!contador) {
-        contador = 1;
-    } else {
-        contador = parseInt(contador) + 1;
-    }
-
-    localStorage.setItem('visitas', contador);
-    console.log("Visita número: " + contador);
-
     // Menu Mobil
     const botonInicio = document.getElementById('start-btn');
     const barraLateral = document.getElementById('sidebar');
@@ -36,44 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
- 
-
-    // Scroll con Mouse
-    const sliders = document.querySelectorAll('.portfolio-grid, .blog-grid');
-    let presionado = false;
-    let inicioX;
-    let scrollIzq;
-
-    sliders.forEach(slider => {
-        slider.addEventListener('mousedown', (e) => {
-            presionado = true;
-            slider.classList.add('active');
-            slider.style.cursor = 'grabbing';
-            inicioX = e.pageX - slider.offsetLeft;
-            scrollIzq = slider.scrollLeft;
-        });
-
-        slider.addEventListener('mouseleave', () => {
-            presionado = false;
-            slider.classList.remove('active');
-            slider.style.cursor = 'default';
-        });
-
-        slider.addEventListener('mouseup', () => {
-            presionado = false;
-            slider.classList.remove('active');
-            slider.style.cursor = 'default';
-        });
-
-        slider.addEventListener('mousemove', (e) => {
-            if (!presionado) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const desplazamiento = (x - inicioX) * 2; 
-            slider.scrollLeft = scrollIzq - desplazamiento;
-        });
-    });
 
     // Proyectos
     const rejillaProyectos = document.querySelector('.portfolio-grid');
@@ -188,26 +138,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
         mostrarProyectos();
     }
-
-    // Validacion Formulario
-    document.addEventListener('submit', (e) => {
-        const formulario = e.target;
-        
-        if (formulario.tagName === 'FORM') {
-            const campos = formulario.querySelectorAll('[required]');
-            let esValido = true;
-
-            campos.forEach(campo => {
-                if (!campo.value.trim()) {
-                    esValido = false;
-                }
-            });
-
-            if (!esValido) {
-                e.preventDefault(); 
-                alert("Por favor, complete todos los campos requeridos");
-            }
-        }
-    });
 
 });
