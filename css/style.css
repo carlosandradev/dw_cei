@@ -175,7 +175,7 @@ body {
     gap: 40px; /* Increased from 10px to 40px "mas espacio entre las mismas" */
     height: 100%; 
     align-items: stretch;
-    padding-bottom: 60px;
+    padding-bottom: 20px; /* Reduced from 60px since GIFs are gone */
     padding-left: 40px; /* Add horizontal padding to make windows "smaller" */
     padding-right: 40px;
 }
@@ -381,20 +381,8 @@ body {
 /* --- Responsive & Functionality Styles --- */
 
 
-/* Footer Badges (GIFs) */
-/* Footer Badges (GIFs) */
-.retro-footer-badges {
-    position: absolute; /* Flotar sobre el contenido */
-    bottom: 10px;       /* Pegado al fondo */
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between; /* Netscape a la izq, IE a la der */
-    align-items: flex-end;
-    padding: 0 20px;    /* Un poco de margen lateral */
-    z-index: 10;        /* Asegurar que esté por encima del fondo */
-    pointer-events: none; /* Para que no bloquee clicks en ventanas si se solapan */
-}
+/* Footer Badges (GIFs) - REMOVED */
+/* .retro-footer-badges { ... } */
 
 /* Dashboard Preview Lists (Home) */
 .preview-list {
@@ -478,12 +466,7 @@ body {
 }
 
 /* Permitir clicks en las imágenes si fuera necesario */
-.retro-footer-badges img {
-    height: 40px;
-    width: auto;
-    display: block;
-    pointer-events: auto; 
-}
+/* .retro-footer-badges img removed */
 
 /* Start Button (Mobile Menu Trigger) */
 #start-btn {
@@ -699,15 +682,17 @@ main .retro-btn {
     .windows-container {
         flex-direction: column;
         height: auto;
+        gap: 20px; /* Consistent spacing between major blocks */
+        padding: 20px; /* Reduced padding from desktop */
     }
 
     .window-column {
-        width: 100% !important;
+        display: contents !important; /* Flatten hierarchy so all windows are siblings for uniform gap */
+        border: none;
+        margin: 0;
+        padding: 0;
+        width: auto;
         height: auto;
-        min-height: auto;
-        margin-bottom: 20px; /* Separator margin */
-        padding-bottom: 0; /* Clear padding */
-        position: relative;
     }
 
     /* Reset padding for large column if needed, or specific override */
@@ -715,7 +700,7 @@ main .retro-btn {
         width: 100% !important;
         max-width: 100% !important;
         padding: 0; /* Reset padding per request */
-        margin-bottom: 20px;
+        margin-bottom: 0;
     }
     
     /* Ensure GIFs stay at bottom of their column blocks */
@@ -732,26 +717,17 @@ main .retro-btn {
         flex-direction: column;
         height: auto;
         overflow-y: visible;
+        padding: 0; /* Reset grid padding */
+        gap: 20px;
     }
 
-    .portfolio-grid .content-window {
+    .portfolio-grid .content-window, .blog-grid .content-window {
         width: 100%;
         max-width: 100%;
         min-height: auto;
     }
 
-    /* Footer Badges Horizontal Layout */
-    .retro-footer-badges {
-        position: relative; /* Reset from absolute */
-        bottom: auto;
-        left: auto;
-        padding: 0;
-        margin-top: 20px;
-        flex-direction: row; /* Force horizontal */
-        flex-wrap: wrap; /* Allow wrapping if needed */
-        justify-content: center; /* Center on mobile */
-        pointer-events: auto;
-    }
+    /* Footer Badges removed */
 
     /* Profile Layout (Sobre Mi) */
     .profile-layout {
@@ -766,13 +742,13 @@ main .retro-btn {
 
     /* --- Standardized Mobile Spacing Reset --- */
     .home-contact-window {
-        margin-bottom: 20px !important; /* Reset from desktop 90px */
+        margin-bottom: 0 !important; /* Reset, handled by gap */
         padding: 5px 10px !important; /* Provide consistent padding */
         min-height: 0 !important;
     }
 
     .windows-container .window {
-        margin-bottom: 20px !important; /* Uniform spacing */
+        margin-bottom: 0 !important; /* Uniform spacing handled by container gap */
         height: auto !important;
     }
     
