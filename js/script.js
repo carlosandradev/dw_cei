@@ -1,4 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- REQUISITO: BOM & LocalStorage (Contador de Visitas) ---
+    // Verifica si ya existe un contador en localStorage
+    let visitCount = localStorage.getItem('visitCount');
+
+    if (!visitCount) {
+        // Si no existe, inicializa en 1
+        visitCount = 1;
+    } else {
+        // Si existe, incrementa
+        visitCount = parseInt(visitCount) + 1;
+    }
+
+    // Guarda el nuevo valor
+    localStorage.setItem('visitCount', visitCount);
+
+    // Salida técnica en consola (Invisible para el usuario final)
+    console.log(`Visitante número ${visitCount} (Persistencia vía LocalStorage)`);
+
     // --- Mobile Menu Logic ---
     const startBtn = document.getElementById('start-btn');
     const sidebar = document.getElementById('sidebar');
@@ -196,5 +214,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
         renderProjects();
     }
+
+    // --- REQUISITO: Validación de Formularios (HTML5 + JS) ---
+    // Listener genérico para cualquier formulario en la página
+    document.addEventListener('submit', (e) => {
+        const form = e.target;
+        
+        // Solo proceder si es un elemento <form>
+        if (form.tagName === 'FORM') {
+            const inputs = form.querySelectorAll('[required]');
+            let valid = true;
+
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    valid = false;
+                }
+            });
+
+            if (!valid) {
+                e.preventDefault(); // Detiene el envío
+                alert("Por favor, complete todos los campos requeridos"); // Feedback nativo
+            }
+        }
+    });
 
 }); // Closing DOMContentLoaded
