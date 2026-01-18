@@ -1,241 +1,218 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- REQUISITO: BOM & LocalStorage (Contador de Visitas) ---
-    // Verifica si ya existe un contador en localStorage
-    let visitCount = localStorage.getItem('visitCount');
 
-    if (!visitCount) {
-        // Si no existe, inicializa en 1
-        visitCount = 1;
+    // Contador
+    let contador = localStorage.getItem('visitas');
+
+    if (!contador) {
+        contador = 1;
     } else {
-        // Si existe, incrementa
-        visitCount = parseInt(visitCount) + 1;
+        contador = parseInt(contador) + 1;
     }
 
-    // Guarda el nuevo valor
-    localStorage.setItem('visitCount', visitCount);
+    localStorage.setItem('visitas', contador);
+    console.log("Visita número: " + contador);
 
-    // Salida técnica en consola (Invisible para el usuario final)
-    console.log(`Visitante número ${visitCount} (Persistencia vía LocalStorage)`);
+    // Menu Mobil
+    const botonInicio = document.getElementById('start-btn');
+    const barraLateral = document.getElementById('sidebar');
 
-    // --- Mobile Menu Logic ---
-    const startBtn = document.getElementById('start-btn');
-    const sidebar = document.getElementById('sidebar');
-    const desktop = document.getElementById('desktop');
-
-    if (startBtn && sidebar) {
-        startBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-            if (sidebar.classList.contains('active')) {
-                startBtn.classList.add('active'); // Visual feedback
+    if (botonInicio && barraLateral) {
+        botonInicio.addEventListener('click', () => {
+            barraLateral.classList.toggle('active');
+            if (barraLateral.classList.contains('active')) {
+                botonInicio.classList.add('active'); 
             } else {
-                startBtn.classList.remove('active');
+                botonInicio.classList.remove('active');
             }
         });
 
-        // Close menu when clicking outside on mobile
+        // Click fuera para cerrar
         document.addEventListener('click', (e) => {
-            if (window.innerWidth < 768) { // Only on mobile
-                if (!sidebar.contains(e.target) && !startBtn.contains(e.target) && sidebar.classList.contains('active')) {
-                    sidebar.classList.remove('active');
-                    startBtn.classList.remove('active');
+            if (window.innerWidth < 768) {
+                if (!barraLateral.contains(e.target) && !botonInicio.contains(e.target) && barraLateral.classList.contains('active')) {
+                    barraLateral.classList.remove('active');
+                    botonInicio.classList.remove('active');
                 }
             }
         });
     }
 
-    // --- Window Logic (Minimize, Maximize, Close) ---
-    // Selector targets only controls within .window, strictly avoiding the GIF containers
-    const windowControls = document.querySelectorAll('.window .title-bar-controls');
+    // Botones de Ventana
+    const controlesVentana = document.querySelectorAll('.window .title-bar-controls');
 
-    windowControls.forEach(controls => {
-        const win = controls.closest('.window');
-        const buttons = controls.querySelectorAll('.title-btn');
+    controlesVentana.forEach(control => {
+        const botones = control.querySelectorAll('.title-btn');
+    }); 
 
-            /* 
-               Window controls are now purely decorative per user request.
-               Functionality removed.
-            */
-            const minimizeBtn = buttons[0]; 
-            const maximizeBtn = buttons[1]; 
-            const closeBtn = buttons[2];
-
-    }); // Closing forEach loop
-
-    // --- Drag to Scroll Logic (Desktop) ---
+    // Scroll con Mouse
     const sliders = document.querySelectorAll('.portfolio-grid, .blog-grid');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+    let presionado = false;
+    let inicioX;
+    let scrollIzq;
 
     sliders.forEach(slider => {
         slider.addEventListener('mousedown', (e) => {
-            isDown = true;
-            slider.classList.add('active'); // You might want to style cursor: grabbing here
+            presionado = true;
+            slider.classList.add('active');
             slider.style.cursor = 'grabbing';
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
+            inicioX = e.pageX - slider.offsetLeft;
+            scrollIzq = slider.scrollLeft;
         });
 
         slider.addEventListener('mouseleave', () => {
-            isDown = false;
+            presionado = false;
             slider.classList.remove('active');
             slider.style.cursor = 'default';
         });
 
         slider.addEventListener('mouseup', () => {
-            isDown = false;
+            presionado = false;
             slider.classList.remove('active');
             slider.style.cursor = 'default';
         });
 
         slider.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
+            if (!presionado) return;
             e.preventDefault();
             const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2; // Scroll-fast
-            slider.scrollLeft = scrollLeft - walk;
+            const desplazamiento = (x - inicioX) * 2; 
+            slider.scrollLeft = scrollIzq - desplazamiento;
         });
     });
 
-    // --- Dynamic Project Rendering (Refactor) ---
-    const projectGrid = document.querySelector('.portfolio-grid');
-    if (projectGrid) {
-        const projects = [
+    // Proyectos
+    const rejillaProyectos = document.querySelector('.portfolio-grid');
+    if (rejillaProyectos) {
+        const misProyectos = [
             {
-                title: 'TiendaFiksi.com',
-                category: 'Dropshipping & E-commerce',
-                description: 'Tienda Dropshipping en Shopify. Integración de proveedores y optimización para conversión.',
-                image: 'img/ditherTiendaPixel.svg',
-                link: 'https://tiendafiksi.com',
+                titulo: 'TiendaFiksi.com',
+                categoria: 'Dropshipping & E-commerce',
+                desc: 'Tienda Dropshipping en Shopify. Integración de proveedores y optimización para conversión.',
+                img: 'img/ditherTiendaPixel.svg',
+                url: 'https://tiendafiksi.com',
                 alt: 'Tienda Fiksi'
             },
             {
-                title: 'IOrganizeUSA.online',
-                category: 'Servicios de Limpieza',
-                description: 'Sitio web corporativo para servicios profesionales de organización. Diseño limpio, gestión de citas y presencia digital local.',
-                image: 'img/ditherIOrganizePixel.svg',
-                link: 'https://iorganizeusa.online',
+                titulo: 'IOrganizeUSA.online',
+                categoria: 'Servicios de Limpieza',
+                desc: 'Sitio web corporativo para servicios profesionales de organización. Diseño limpio, gestión de citas y presencia digital local.',
+                img: 'img/ditherIOrganizePixel.svg',
+                url: 'https://iorganizeusa.online',
                 alt: 'IOrganize'
             },
             {
-                title: 'NailsSpaByLeidy.com',
-                category: 'Servicios de Belleza',
-                description: 'Plataforma digital para salón de belleza. Catálogo de servicios, galería y citas online.',
-                image: 'img/ditherNailPixel.svg',
-                link: 'https://nailspabyleidy.com',
+                titulo: 'NailsSpaByLeidy.com',
+                categoria: 'Servicios de Belleza',
+                desc: 'Plataforma digital para salón de belleza. Catálogo de servicios, galería y citas online.',
+                img: 'img/ditherNailPixel.svg',
+                url: 'https://nailspabyleidy.com',
                 alt: 'Nails Spa'
             }
         ];
 
-        function renderProjects() {
-            // Clear existing content (if any, though we will remove it from HTML)
-            projectGrid.innerHTML = '';
+        function mostrarProyectos() {
+            rejillaProyectos.innerHTML = '';
 
-            projects.forEach(project => {
-                // Create Window Container
-                const windowDiv = document.createElement('div');
-                windowDiv.className = 'window content-window';
+            misProyectos.forEach(proyecto => {
+                // Ventana
+                const ventana = document.createElement('div');
+                ventana.className = 'window content-window';
 
-                // Create Title Bar
-                const titleBar = document.createElement('div');
-                titleBar.className = 'title-bar';
+                // Titulo
+                const barraTitulo = document.createElement('div');
+                barraTitulo.className = 'title-bar';
                 
-                const titleText = document.createElement('div');
-                titleText.className = 'title-bar-text';
-                titleText.textContent = project.title;
+                const textoTitulo = document.createElement('div');
+                textoTitulo.className = 'title-bar-text';
+                textoTitulo.textContent = proyecto.titulo;
 
-                const controls = document.createElement('div');
-                controls.className = 'title-bar-controls';
-                ['t', 'p', 'x'].forEach(type => { // placeholders for _ □ ×
+                const controles = document.createElement('div');
+                controles.className = 'title-bar-controls';
+                ['t', 'p', 'x'].forEach(tipo => { 
                    const btn = document.createElement('button');
                    btn.className = 'title-btn';
-                   if (type === 't') btn.textContent = '_';
-                   if (type === 'p') btn.textContent = '□';
-                   if (type === 'x') btn.textContent = '×';
-                   controls.appendChild(btn);
+                   if (tipo === 't') btn.textContent = '_';
+                   if (tipo === 'p') btn.textContent = '□';
+                   if (tipo === 'x') btn.textContent = '×';
+                   controles.appendChild(btn);
                 });
 
-                titleBar.appendChild(titleText);
-                titleBar.appendChild(controls);
+                barraTitulo.appendChild(textoTitulo);
+                barraTitulo.appendChild(controles);
 
-                // Create Window Body
-                const windowBody = document.createElement('div');
-                windowBody.className = 'window-body';
+                // Contenido
+                const cuerpoVentana = document.createElement('div');
+                cuerpoVentana.className = 'window-body';
 
-                // Media Container
-                const mediaContainer = document.createElement('div');
-                mediaContainer.className = 'media-container';
+                // Imagen
+                const contenedorMedia = document.createElement('div');
+                contenedorMedia.className = 'media-container';
                 
-                const img = document.createElement('img');
-                img.src = project.image;
-                img.alt = project.alt;
-                img.className = 'project-window-logo';
-                img.style.margin = '0 auto';
-                img.style.display = 'block';
-                mediaContainer.appendChild(img);
+                const imagen = document.createElement('img');
+                imagen.src = proyecto.img;
+                imagen.alt = proyecto.alt;
+                imagen.className = 'project-window-logo';
+                imagen.style.margin = '0 auto';
+                imagen.style.display = 'block';
+                contenedorMedia.appendChild(imagen);
 
-                // H3 Title
+                // Texto
                 const h3 = document.createElement('h3');
                 h3.style.marginTop = '0';
                 h3.style.fontFamily = 'var(--font-pixel)';
                 h3.style.fontSize = '14px';
-                h3.textContent = project.category;
+                h3.textContent = proyecto.categoria;
 
-                // Paragraph
-                const p = document.createElement('p');
-                p.textContent = project.description;
+                const parrafo = document.createElement('p');
+                parrafo.textContent = proyecto.desc;
 
-                // Button Container
-                const btnContainer = document.createElement('div');
-                btnContainer.className = 'archive-btn-container';
+                // Boton
+                const contenedorBtn = document.createElement('div');
+                contenedorBtn.className = 'archive-btn-container';
 
-                const a = document.createElement('a');
-                a.href = project.link;
-                a.target = '_blank';
-                a.className = 'win95-btn';
-                a.textContent = 'VISITAR SITIO';
+                const enlace = document.createElement('a');
+                enlace.href = proyecto.url;
+                enlace.target = '_blank';
+                enlace.className = 'win95-btn';
+                enlace.textContent = 'VISITAR SITIO';
                 
-                btnContainer.appendChild(a);
+                contenedorBtn.appendChild(enlace);
 
-                // Assemble Body
-                windowBody.appendChild(mediaContainer);
-                windowBody.appendChild(h3);
-                windowBody.appendChild(p);
-                windowBody.appendChild(btnContainer);
+                // Agregar todo
+                cuerpoVentana.appendChild(contenedorMedia);
+                cuerpoVentana.appendChild(h3);
+                cuerpoVentana.appendChild(parrafo);
+                cuerpoVentana.appendChild(contenedorBtn);
 
-                // Assemble Window
-                windowDiv.appendChild(titleBar);
-                windowDiv.appendChild(windowBody);
+                ventana.appendChild(barraTitulo);
+                ventana.appendChild(cuerpoVentana);
 
-                // Append to Grid
-                projectGrid.appendChild(windowDiv);
+                rejillaProyectos.appendChild(ventana);
             });
         }
 
-        renderProjects();
+        mostrarProyectos();
     }
 
-    // --- REQUISITO: Validación de Formularios (HTML5 + JS) ---
-    // Listener genérico para cualquier formulario en la página
+    // Validacion Formulario
     document.addEventListener('submit', (e) => {
-        const form = e.target;
+        const formulario = e.target;
         
-        // Solo proceder si es un elemento <form>
-        if (form.tagName === 'FORM') {
-            const inputs = form.querySelectorAll('[required]');
-            let valid = true;
+        if (formulario.tagName === 'FORM') {
+            const campos = formulario.querySelectorAll('[required]');
+            let esValido = true;
 
-            inputs.forEach(input => {
-                if (!input.value.trim()) {
-                    valid = false;
+            campos.forEach(campo => {
+                if (!campo.value.trim()) {
+                    esValido = false;
                 }
             });
 
-            if (!valid) {
-                e.preventDefault(); // Detiene el envío
-                alert("Por favor, complete todos los campos requeridos"); // Feedback nativo
+            if (!esValido) {
+                e.preventDefault(); 
+                alert("Por favor, complete todos los campos requeridos");
             }
         }
     });
 
-}); // Closing DOMContentLoaded
+});

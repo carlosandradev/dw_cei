@@ -1,35 +1,35 @@
 :root {
-    /* User Palette */
-    --retro-gray: #C4C4BF;       /* Background */
-    --retro-dark-gray: #8A8A85;  /* Derived Darker Gray for shadows (approx 30% darker) */
-    --retro-white: #F7F7F2;      /* White */
-    --retro-black: #1C1C1A;      /* Headings/Dark */
-    --retro-blue: #A9D69F;       /* Mapping Secondary Green to Title Bars for the theme */
-    --retro-accent: #00FC33;     /* Accent */
-    --retro-highlight: #FCC700;  /* Highlight */
-    --retro-link: #4D9FFC;       /* Link */
-    --retro-text: #22221F;       /* Primary Text */
+    /* Colores */
+    --gris-fondo: #C4C4BF;       
+    --gris-oscuro: #8A8A85;      
+    --blanco-puro: #F7F7F2;      
+    --negro-texto: #1C1C1A;      
+    --verde-titulo: #A9D69F;     
+    --verde-acento: #00FC33;     
+    --amarillo-resalte: #FCC700; 
+    --azul-enlace: #4D9FFC;       
+    --texto-principal: #22221F;   
     
-    /* 3D Borders */
-    --border-light: #F7F7F2;
-    --border-dark: #8A8A85;      /* Using derived dark gray */
-    --border-darker: #1C1C1A;    /* Using Headings color for darkest shadow */
+    /* Bordes */
+    --borde-claro: #F7F7F2;
+    --borde-oscuro: #8A8A85;      
+    --borde-mas-oscuro: #1C1C1A;    
     
-    /* Typography */
-    --font-pixel: 'Press Start 2P', cursive;
-    --font-terminal: 'VT323', monospace;
-    --font-main: 'Roboto Mono', monospace;
+    /* Fuentes */
+    --fuente-pixel: 'Press Start 2P', cursive;
+    --fuente-terminal: 'VT323', monospace;
+    --fuente-principal: 'Roboto Mono', monospace;
     
-    /* Specific overrides */
-    --title-bar-start: #425857;  /* User requested Teal/Gray */
-    --title-bar-end: #546e6d;    /* Slightly lighter version for gradient */
+    /* Barra de titulo */
+    --barra-titulo-inicio: #425857;  
+    --barra-titulo-fin: #546e6d;    
 }
 
 * {
     box-sizing: border-box;
 }
 
-/* Ensure pixel art looks crisp */
+/* Imagenes Pixeladas */
 img {
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
@@ -39,9 +39,9 @@ img {
 body {
     margin: 0;
     padding: 0;
-    font-family: var(--font-main);
-    background-color: var(--retro-gray);
-    color: var(--retro-text);
+    font-family: var(--fuente-principal);
+    background-color: var(--gris-fondo);
+    color: var(--texto-principal);
     height: 100vh;
     overflow: hidden;
 }
@@ -52,15 +52,15 @@ body {
     width: 100%;
 }
 
-/* Sidebar Styles */
+/* Barra Lateral */
 #sidebar {
     width: 120px !important;
     min-width: 120px !important;
     max-width: 120px !important;
-    flex-shrink: 0 !important; /* Prevent shrinking */
-    background-color: var(--retro-gray);
-    border-right: 2px solid var(--border-light); /* Bevel effect part 1 */
-    box-shadow: 2px 0 0 var(--border-dark); /* Bevel effect part 2 */
+    flex-shrink: 0 !important; 
+    background-color: var(--gris-fondo);
+    border-right: 2px solid var(--borde-claro); 
+    box-shadow: 2px 0 0 var(--borde-oscuro); 
     display: flex;
     flex-direction: column;
     padding: 2px;
@@ -68,42 +68,41 @@ body {
 }
 
 .logo-area {
-    padding: 2px; /* reduced from 10px to maximize logo size */
+    padding: 2px; 
     text-align: center;
-    border-bottom: 2px solid var(--border-dark);
-    box-shadow: 0 1px 0 var(--border-light);
+    border-bottom: 2px solid var(--borde-oscuro);
+    box-shadow: 0 1px 0 var(--borde-claro);
     margin-bottom: 5px;
 }
 
 .logo-ca {
     font-size: 48px;
     font-weight: bold;
-    color: var(--retro-blue);
-    color: var(--retro-blue);
-    font-family: var(--font-pixel);
-    text-shadow: 2px 2px var(--retro-black); /* Simple shadow */
-    font-size: 32px; /* Adjusted for pixel font */
+    color: var(--verde-titulo);
+    font-family: var(--fuente-pixel);
+    text-shadow: 2px 2px var(--negro-texto); 
+    font-size: 32px; 
     letter-spacing: -2px;
 }
 
-.retro-nav {
+.navegacion-principal {
     display: flex;
     flex-direction: column;
     gap: 5px;
     padding: 5px;
 }
 
-.retro-btn {
+.boton-estilo {
     width: 100%;
-    min-height: 70px; /* Increased from 60px */
+    min-height: 70px; 
     padding: 8px 2px;
-    background-color: var(--retro-gray);
+    background-color: var(--gris-fondo);
     border: none;
-    box-shadow: inset 2px 2px 0 var(--border-light),
-                inset -2px -2px 0 var(--border-dark),
-                2px 2px 5px rgba(0,0,0,0.2); /* Drop shadow */
-    font-family: var(--font-pixel);
-    font-size: 8px; /* Pixel font is large */
+    box-shadow: inset 2px 2px 0 var(--borde-claro),
+                inset -2px -2px 0 var(--borde-oscuro),
+                2px 2px 5px rgba(0,0,0,0.2); 
+    font-family: var(--fuente-pixel);
+    font-size: 8px; 
     line-height: 1.5;
     cursor: pointer;
     display: flex;
@@ -111,134 +110,123 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    text-decoration: none; /* For when it's an anchor */
-    color: var(--retro-text); /* Ensure text color is consistent */
+    text-decoration: none; 
+    color: var(--texto-principal); 
 }
 
-.retro-btn:active {
-    box-shadow: inset 2px 2px 0 var(--border-dark),
-                inset -2px -2px 0 var(--border-light);
+.boton-estilo:active {
+    box-shadow: inset 2px 2px 0 var(--borde-oscuro),
+                inset -2px -2px 0 var(--borde-claro);
     transform: translate(1px, 1px);
 }
 
-/* Main Desktop Area */
+/* Escritorio Principal */
 #desktop {
     flex-grow: 1;
     position: relative;
-    /* Background Image */
     background-image: url('../img/skyebckg.svg');
     background-repeat: repeat;
-    background-size: auto; /* Ensure it tiles at original size */
-    
+    background-size: auto; 
     padding: 10px;
     overflow: hidden;
 }
 
 .top-banner {
     background-color: #ffffff; 
-    /* Gradient text effect simulated nicely with CSS? Maybe just keep it simple first */
-    /* Looking at the image, it's white text on blue background actually? 
-       Wait, the image says "The Best Windows 95 Information..." in blue italic text on a white/cloudy strip. */
     background: rgba(255, 255, 255, 0.6);
     padding: 10px;
     text-align: center;
-    font-family: var(--font-terminal);
+    font-family: var(--fuente-terminal);
     font-weight: bold;
-    color: var(--retro-link);
+    color: var(--azul-enlace);
     font-size: 24px;
-    border: 2px solid var(--retro-gray);
-    box-shadow: inset 1px 1px 0 var(--border-dark),
-                inset -1px -1px 0 var(--border-light);
+    border: 2px solid var(--gris-fondo);
+    box-shadow: inset 1px 1px 0 var(--borde-oscuro),
+                inset -1px -1px 0 var(--borde-claro);
     margin-bottom: 20px;
-    overflow: hidden; /* Ensure marquee text doesn't spill out */
+    overflow: hidden; 
     white-space: nowrap;
 }
 
-/* Scrollbar styling for webkit */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 16px;
-  background: var(--retro-gray);
+  background: var(--gris-fondo);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--retro-gray);
-  box-shadow: inset 1px 1px 0 var(--border-light),
-    inset -1px -1px 0 var(--border-dark);
+  background: var(--gris-fondo);
+  box-shadow: inset 1px 1px 0 var(--borde-claro),
+    inset -1px -1px 0 var(--borde-oscuro);
 }
 
 ::-webkit-scrollbar-button {
-  background: var(--retro-gray);
+  background: var(--gris-fondo);
   width: 16px;
   height: 16px;
-  box-shadow: inset 1px 1px 0 var(--border-light),
-    inset -1px -1px 0 var(--border-dark);
+  box-shadow: inset 1px 1px 0 var(--borde-claro),
+    inset -1px -1px 0 var(--borde-oscuro);
 }
 
-/* Window Styles */
-/* Window Styles */
-/* Window Styles */
+/* Contenedor de Ventanas */
 .windows-container {
     display: flex;
-    gap: 40px; /* Increased from 10px to 40px "mas espacio entre las mismas" */
+    gap: 40px; 
     height: 100%; 
     align-items: stretch;
-    padding-bottom: 20px; /* Reduced from 60px since GIFs are gone */
-    padding-left: 40px; /* Add horizontal padding to make windows "smaller" */
+    padding-bottom: 20px; 
+    padding-left: 40px; 
     padding-right: 40px;
 }
 
-/* Center Column Specifics - Rigid on Desktop per user request */
+/* Columna Central */
 .center-column {
-    flex: 0 0 480px; /* Widened to 480px per user request to shorten "Sobre Mi" height */
+    flex: 0 0 480px; 
     width: 480px;
     max-width: 480px;
     min-width: 480px;
-    
-    /* Vertical Centering for its children */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center the group vertically */
-    gap: 20px; /* Gap between Sobre Mi and Contact */
+    justify-content: center; 
+    gap: 20px; 
 }
 
-/* Make Sobre Mi (first window) natural height, not forced to fill */
 .center-column .window:first-child {
-    flex: 0 1 auto !important; /* Allow shrinking, don't force grow */
-    margin-bottom: 0 !important; /* Let gap handle spacing */
+    flex: 0 1 auto !important; 
+    margin-bottom: 0 !important; 
     min-height: 0; 
 }
 
 .windows-container .window {
-    height: auto !important;       /* Altura según el texto/logo */
-    flex-grow: 0 !important;       /* Prohibido estirarse para llenar huecos */
-    min-height: auto;              /* Resetea mínimos anteriores */
-    margin-bottom: 20px;           /* Espacio de seguridad */
+    height: auto !important;       
+    flex-grow: 0 !important;       
+    min-height: auto;              
+    margin-bottom: 20px;           
 }
 
 .window-column {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    flex: 1; /* Make all columns flexible by default */
-    min-width: 0; /* Allow flex items to shrink below content size if needed */
-    position: relative; /* Enable absolute positioning of children (GIFs) */
+    flex: 1; 
+    min-width: 0; 
+    position: relative; 
     justify-content: flex-start;
-    /* padding-bottom: 80px; Removed excessive padding since we want single view */
 }
 
 .window-column.large {
-    flex: 1.5; /* Reduced from 2 to make them visually smaller */
+    flex: 1.5; 
     justify-content: flex-start;
-    overflow-y: auto; /* Allow individual sides to scroll if needed, but main page static */
+    overflow-y: auto; 
 }
 
 .window {
-    background-color: var(--retro-gray);
-    border: 2px solid var(--retro-gray);
-    box-shadow: inset 1px 1px 0 var(--border-light),
-                inset -1px -1px 0 var(--border-darker),
-                inset 2px 2px 0 var(--border-light),
-                inset -2px -2px 0 var(--border-dark),
+    background-color: var(--gris-fondo);
+    border: 2px solid var(--gris-fondo);
+    box-shadow: inset 1px 1px 0 var(--borde-claro),
+                inset -1px -1px 0 var(--borde-mas-oscuro),
+                inset 2px 2px 0 var(--borde-claro),
+                inset -2px -2px 0 var(--borde-oscuro),
                 2px 2px 5px rgba(0,0,0,0.3);
     padding: 3px;
     display: flex;
@@ -250,15 +238,15 @@ body {
 }
 
 .title-bar {
-    background: linear-gradient(90deg, var(--title-bar-start), var(--title-bar-end));
+    background: linear-gradient(90deg, var(--barra-titulo-inicio), var(--barra-titulo-fin));
     padding: 3px 2px 3px 3px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--retro-white);
+    color: var(--blanco-puro);
     font-weight: bold;
-    font-family: var(--font-main);
-    font-size: 14px; /* Increased for legibility */
+    font-family: var(--fuente-principal);
+    font-size: 14px; 
     letter-spacing: 0px;
 }
 
@@ -271,7 +259,6 @@ body {
     text-overflow: ellipsis;
 }
 
-/* ... (controls unchanged) ... */
 .title-bar-controls {
     display: flex;
     gap: 2px;
@@ -281,9 +268,9 @@ body {
 .title-btn {
     width: 16px;
     height: 14px;
-    background-color: var(--retro-gray);
+    background-color: var(--gris-fondo);
     border: 1px solid;
-    border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+    border-color: var(--borde-claro) var(--borde-oscuro) var(--borde-oscuro) var(--borde-claro);
     font-size: 8px;
     display: flex;
     justify-content: center;
@@ -293,50 +280,45 @@ body {
 }
 
 .title-btn:active {
-    border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+    border-color: var(--borde-oscuro) var(--borde-claro) var(--borde-claro) var(--borde-oscuro);
 }
 
 .window-body {
     margin-top: 2px;
-    background-color: var(--retro-white);
+    background-color: var(--blanco-puro);
     border: 2px solid;
-    border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+    border-color: var(--borde-oscuro) var(--borde-claro) var(--borde-claro) var(--borde-oscuro);
     flex-grow: 1;
     overflow: auto;
     padding: 10px;
     position: relative;
-    color: var(--retro-text);
-    display: flex; /* Flex layout to align internals */
-    flex-direction: column; /* Stack vertically */
+    color: var(--texto-principal);
+    display: flex; 
+    flex-direction: column; 
 }
-
-/* ... (music content unchanged) ... */
 
 .archive-btn-container {
     display: flex;
     justify-content: flex-end;
     margin-top: auto;
     padding: 5px 0;
-    flex-wrap: wrap; /* Allow wrapping on very small screens */
+    flex-wrap: wrap; 
 }
 
-/* ... (btn styles unchanged) ... */
-
-/* Blog, Portfolio, and Courses Grid Styles - Unified Grid */
-.courses-grid { /* Separating blog-grid out to share with portfolio */
+/* Grillas Generales */
+.courses-grid { 
     display: flex;
-    flex-direction: column; /* Stacks vertically */
-    height: calc(100% - 60px); /* Fill available space */
-    justify-content: flex-start; /* Start from top */
+    flex-direction: column; 
+    height: calc(100% - 60px); 
+    justify-content: flex-start; 
     padding: 20px;
-    gap: 20px; /* Explicit gap */
-    overflow-y: auto; /* Enable vertical scrolling */
+    gap: 20px; 
+    overflow-y: auto; 
 }
 
-/* --- Portfolio & Blog Specific Grid (Responsive) --- */
+/* Grilla Portafolio y Blog */
 .portfolio-grid, .blog-grid {
     display: grid;
-    /* Auto-fit columns with min-width of 280px (or smaller if needed) */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
     gap: 20px;
     padding: 20px;
@@ -349,7 +331,7 @@ body {
     width: 100%;
     max-width: 100%;
     margin: 0;
-    min-height: 400px; /* Reduced simplified min-height */
+    min-height: 400px; 
     height: auto;
     display: flex;
     flex-direction: column;
@@ -362,12 +344,12 @@ body {
 .media-container {
     text-align: center;
     margin-bottom: 10px;
-    border: 2px solid var(--border-dark);
+    border: 2px solid var(--borde-oscuro);
     padding: 5px;
     background: white;
 }
 
-/* Profile Layout */
+/* Perfil */
 .profile-layout {
     display: flex;
     gap: 20px;
@@ -381,18 +363,14 @@ body {
 .profile-image img {
     max-width: 250px;
     height: auto;
-    border: 2px solid var(--border-dark);
+    border: 2px solid var(--borde-oscuro);
     display: block;
-    image-rendering: auto; /* Fix for blurry/jagged profile image */
+    image-rendering: auto; 
 }
 
-/* --- Responsive & Functionality Styles --- */
+/* --- Responsive --- */
 
-
-/* Footer Badges (GIFs) - REMOVED */
-/* .retro-footer-badges { ... } */
-
-/* Dashboard Preview Lists (Home) */
+/* Vistas Previas */
 .preview-list {
     display: flex;
     flex-direction: column;
@@ -405,102 +383,87 @@ body {
     align-items: center;
     gap: 10px;
     padding: 8px;
-    border: 1px dotted var(--retro-dark-gray);
+    border: 1px dotted var(--gris-oscuro);
     background: white;
     color: black;
     text-decoration: none;
-    font-family: var(--font-terminal);
+    font-family: var(--fuente-terminal);
     font-size: 18px;
     cursor: pointer;
 }
 
 .preview-item:hover {
-    background: var(--retro-link);
+    background: var(--azul-enlace);
     color: white;
-    border-color: var(--retro-link);
+    border-color: var(--azul-enlace);
 }
 
-/* Compact Home Contact Window */
+/* Contacto Home */
 .home-contact-window {
-    /* 1. Grosor y Color Base (Igual que .window) */
-    border: 2px solid var(--retro-gray) !important;
-
-    /* 2. Efecto 3D Completo (Esto es lo que da el "grosor" visual) */
-    box-shadow: inset 1px 1px 0 var(--border-light),
-                inset -1px -1px 0 var(--border-darker),
-                inset 2px 2px 0 var(--border-light),
-                inset -2px -2px 0 var(--border-dark),
+    border: 2px solid var(--gris-fondo) !important;
+    box-shadow: inset 1px 1px 0 var(--borde-claro),
+                inset -1px -1px 0 var(--borde-mas-oscuro),
+                inset 2px 2px 0 var(--borde-claro),
+                inset -2px -2px 0 var(--borde-oscuro),
                 2px 2px 5px rgba(0,0,0,0.3) !important;
-
-    /* 3. Fondo Base */
-    background-color: var(--retro-gray) !important;
-
-    /* --- Mantener tus ajustes de tamaño (NO BORRAR) --- */
+    background-color: var(--gris-fondo) !important;
     padding: 3px !important;
-    margin-bottom: 0 !important; /* Reset margin, controlled by column gap */
+    margin-bottom: 0 !important; 
     min-height: auto !important;
     height: auto !important;
-    flex-shrink: 0; /* Prevent shrinking too much */
+    flex-shrink: 0; 
 }
 
-/* Reducir un poco el logo SOLO de esta ventana para ganar espacio */
-/* Reducir un poco el logo SOLO de esta ventana para ganar espacio */
 .home-contact-window .project-window-logo {
-    max-width: 100px !important;    /* Reduced further to 100px for compactness */
-    margin: 0 auto 5px auto !important;      /* Reduced margin from 15px to 5px */
+    max-width: 100px !important;    
+    margin: 0 auto 5px auto !important;      
 }
 
-/* Reducir el texto SOLO de esta ventana */
 .home-contact-window p {
     margin-top: 0 !important;
     margin-bottom: 5px !important;
-    line-height: 1.1 !important; /* Tighter line height */
+    line-height: 1.1 !important; 
     font-size: 15px !important;
 }
 
-/* Ajuste del Botón/Contenedor */
 .home-contact-window .archive-btn-container {
     margin-top: 5px !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
 }
 
-/* Inserted Logo for Project Window */
 .project-window-logo {
     display: block;
-    margin: 0 auto 15px auto; /* Centered with bottom margin */
-    max-width: 150px; /* Adjust size as requested */
+    margin: 0 auto 15px auto; 
+    max-width: 150px; 
     height: auto;
 }
 
-/* Permitir clicks en las imágenes si fuera necesario */
-/* .retro-footer-badges img removed */
-
-/* Start Button (Mobile Menu Trigger) */
+/* Boton Inicio */
 #start-btn {
-    display: none; /* Hidden on desktop */
+    display: none; 
     position: fixed;
     bottom: 10px;
     left: 10px;
     z-index: 2000;
     padding: 10px 15px;
-    font-family: var(--font-pixel);
+    font-family: var(--fuente-pixel);
     font-size: 16px;
-    background: var(--retro-gray);
+    background: var(--gris-fondo);
     color: black;
-    border: 2px solid var(--retro-white);
-    box-shadow: 2px 2px 0 var(--retro-black), inset 1px 1px 0 var(--retro-white);
+    border: 2px solid var(--blanco-puro);
+    box-shadow: 2px 2px 0 var(--negro-texto), inset 1px 1px 0 var(--blanco-puro);
     cursor: pointer;
     align-items: center;
     gap: 5px;
 }
 
 #start-btn:active, #start-btn.active {
-    box-shadow: inset 2px 2px 0 var(--retro-black), inset -1px -1px 0 var(--retro-white);
-    background: #c0c0c0; /* Slightly darker */
+    box-shadow: inset 2px 2px 0 var(--negro-texto), inset -1px -1px 0 var(--blanco-puro);
+    background: #c0c0c0; 
 }
 
-/* Maximized Window State */
+/* Maximizado */
 .window.maximized {
     position: fixed !important;
     top: 0 !important;
@@ -511,141 +474,131 @@ body {
     margin: 0 !important;
 }
 
-/* --- Global Visual Standardization (Master Rules) --- */
-
-/* 1. Master Text Rule */
+/* Textos Globales */
 .window-body, 
 .window-body p, 
 .window-body li, 
 .window-body span, 
 .window-body div:not(.title-bar):not(.title-bar-text):not(.title-bar-controls) {
-    font-family: var(--font-terminal) !important;
-    font-size: 16px !important; /* Reduced from 18px for single view compactness */
-    line-height: 1.5; /* Good spacing */
-    color: var(--retro-text);
+    font-family: var(--fuente-terminal) !important;
+    font-size: 16px !important; 
+    line-height: 1.5; 
+    color: var(--texto-principal);
 }
 
 .window-body h1, 
 .window-body h2, 
 .window-body h3, 
 .window-body h4 {
-    font-family: var(--font-terminal) !important;
+    font-family: var(--fuente-terminal) !important;
     font-size: 22px !important;
     margin-bottom: 15px;
     line-height: 1.4;
 }
 
-/* 2. Button Standardization Rule */
-/* EXCLUDE .retro-btn inside #sidebar or simply use a more specific selector for the global ones */
+/* Botones Globales */
 .win95-btn, 
 .window-body a[class*="btn"], 
-/* Only targeting .retro-btn NOT in the sidebar if needed, generally main content buttons */
-main .retro-btn { 
-    font-family: var(--font-terminal) !important;
-    font-size: 13px !important; /* Reduced size as requested */
-    padding: 5px 10px !important; /* Reduced padding */
+main .boton-estilo { 
+    font-family: var(--fuente-terminal) !important;
+    font-size: 13px !important; 
+    padding: 5px 10px !important; 
     height: auto !important;
     text-transform: uppercase;
-    min-width: 140px; /* Critical for visual consistency */
+    min-width: 140px; 
     text-align: center;
     display: inline-block;
     box-sizing: border-box;
     white-space: nowrap;
     text-decoration: none;
     color: black;
-    /* Ensure borders and background match retro style if not already set by class */
-    border: 2px solid var(--retro-white);
-    border-right-color: var(--retro-black);
-    border-bottom-color: var(--retro-black);
-    background: var(--retro-gray);
+    border: 2px solid var(--blanco-puro);
+    border-right-color: var(--negro-texto);
+    border-bottom-color: var(--negro-texto);
+    background: var(--gris-fondo);
     box-shadow: 1px 1px 0 black;
 }
 
-.win95-btn:active, main .retro-btn:active {
-    border: 2px solid var(--retro-black);
-    border-right-color: var(--retro-white);
-    border-bottom-color: var(--retro-white);
+.win95-btn:active, main .boton-estilo:active {
+    border: 2px solid var(--negro-texto);
+    border-right-color: var(--blanco-puro);
+    border-bottom-color: var(--blanco-puro);
     transform: translate(1px, 1px);
 }
 
-/* --- ISOLATED SIDEBAR RESTORATION --- */
-/* Ensure sidebar buttons are strictly decorative tiles */
-#sidebar .retro-btn {
+/* Barra lateral botones */
+#sidebar .boton-estilo {
     width: 100% !important;
-    min-width: 0 !important; /* Remove global min-width */
+    min-width: 0 !important; 
     height: auto;
     min-height: 70px;
-    font-size: 8px !important; /* Small pixel font - Reduced from 10px */
+    font-size: 8px !important; 
     padding: 5px 2px !important;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: inset 2px 2px 0 var(--border-light),
-                inset -2px -2px 0 var(--border-dark),
+    box-shadow: inset 2px 2px 0 var(--borde-claro),
+                inset -2px -2px 0 var(--borde-oscuro),
                 2px 2px 5px rgba(0,0,0,0.2) !important;
     border: none !important;
-    text-transform: none; /* Keep original case if desired, or uppercase if preferred */
-    background: var(--retro-gray);
-    color: var(--retro-text);
+    text-transform: none; 
+    background: var(--gris-fondo);
+    color: var(--texto-principal);
 }
 
-#sidebar .retro-btn img {
-    /* Ensure icons aren't affected by other stuff */
+#sidebar .boton-estilo img {
     width: 42px; 
     height: 42px;
     margin-bottom: 5px;
     display: block;
 }
 
-/* --- Mobile Media Queries --- */
-/* Active Page Animation */
+/* Animaciones */
 @keyframes pixel-bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-4px); }
 }
 
-.retro-btn.active img {
+.boton-estilo.active img {
     animation: pixel-bounce 1.5s infinite ease-in-out;
 }
 
-.retro-btn.active {
-    background-color: var(--retro-white); /* Optional: Highlight background for active state */
-    box-shadow: inset 2px 2px 0 var(--border-dark),
-                inset -2px -2px 0 var(--border-light); /* Inset shadow to look pressed */
+.boton-estilo.active {
+    background-color: var(--blanco-puro); 
+    box-shadow: inset 2px 2px 0 var(--borde-oscuro),
+                inset -2px -2px 0 var(--borde-claro); 
 }
 
-/* --- Media Queries --- */
+/* Media Queries */
 
-/* Tablet (Intermediate) */
+/* Tablet */
 @media (max-width: 1024px) {
     .windows-container {
-        flex-direction: column; /* Stack on tablet like mobile if needed, or adjust columns */
+        flex-direction: column; 
     }
     .window-column.large {
         flex: 1 1 auto;
-        padding-bottom: 20px; /* Reset extra padding if stacking */
+        padding-bottom: 20px; 
     }
     .center-column {
-        flex: 1 1 auto; /* Reset rigid flex */
-        width: 100% !important; /* Force full width */
+        flex: 1 1 auto; 
+        width: 100% !important; 
         max-width: 100% !important;
         min-width: 0 !important;
     }
 }
 
-/* Mobile */
+/* Movil */
 @media (max-width: 768px) {
-    /* Layout Adjustments */
     #app-container {
         flex-direction: column;
     }
 
-    /* Sidebar (Mobile Menu) */
     #sidebar {
         position: fixed;
         top: 0;
-        left: -250px; /* Hidden by default */
+        left: -250px; 
         width: 250px;
         height: 100vh;
         z-index: 1500;
@@ -654,17 +607,15 @@ main .retro-btn {
     }
 
     #sidebar.active {
-        left: 0; /* Slide in */
+        left: 0; 
     }
 
-    /* Mobile Menu Icons Sizing */
-    .retro-btn img {
+    .boton-estilo img {
         width: 42px !important;
         height: 42px !important;
         margin-bottom: 5px;
     }
 
-    /* Mobile Logo Adjustment */
     .logo-be, .logo-ca, .logo-area img {
         max-width: 60%; 
         width: 150px;
@@ -672,30 +623,27 @@ main .retro-btn {
         display: block;
     }
 
-    /* Show Start Button */
     #start-btn {
         display: flex;
     }
 
-    /* Desktop Area Adjustments */
     #desktop {
-        margin-left: 0; /* Remove sidebar space */
-        padding-bottom: 60px; /* Space for Start button */
+        margin-left: 0; 
+        padding-bottom: 60px; 
         width: 100%;
         height: 100vh;
         overflow-y: auto;
     }
 
-    /* Stack Windows Vertically */
     .windows-container {
         flex-direction: column;
         height: auto;
-        gap: 20px; /* Consistent spacing between major blocks */
-        padding: 20px; /* Reduced padding from desktop */
+        gap: 20px; 
+        padding: 20px; 
     }
 
     .window-column {
-        display: contents !important; /* Flatten hierarchy so all windows are siblings for uniform gap */
+        display: contents !important; 
         border: none;
         margin: 0;
         padding: 0;
@@ -703,29 +651,26 @@ main .retro-btn {
         height: auto;
     }
 
-    /* Reset padding for large column if needed, or specific override */
     .window-column.large, .center-column {
         width: 100% !important;
         max-width: 100% !important;
-        padding: 0; /* Reset padding per request */
+        padding: 0; 
         margin-bottom: 0;
     }
     
-    /* Ensure GIFs stay at bottom of their column blocks */
     .window-column > div[style*="position: absolute"] {
-        position: relative !important; /* Make them flow naturally on mobile */
+        position: relative !important; 
         bottom: auto !important;
         text-align: center;
         margin-top: 20px;
     }
 
-    /* Portfolio Grid - Single Column on Mobile */
     .portfolio-grid {
         display: flex;
         flex-direction: column;
         height: auto;
         overflow-y: visible;
-        padding: 0; /* Reset grid padding */
+        padding: 0; 
         gap: 20px;
     }
 
@@ -735,32 +680,27 @@ main .retro-btn {
         min-height: auto;
     }
 
-    /* Footer Badges removed */
-
-    /* Profile Layout (Sobre Mi) */
     .profile-layout {
-        flex-direction: column-reverse !important; /* Stack image on top (visually) */
+        flex-direction: column-reverse !important; 
         align-items: center !important;
         text-align: center;
     }
 
     .profile-image img {
-        margin: 0 auto 20px auto; /* Center image and add bottom margin */
+        margin: 0 auto 20px auto; 
     }
 
-    /* --- Standardized Mobile Spacing Reset --- */
     .home-contact-window {
-        margin-bottom: 0 !important; /* Reset, handled by gap */
-        padding: 5px 10px !important; /* Provide consistent padding */
+        margin-bottom: 0 !important; 
+        padding: 5px 10px !important; 
         min-height: 0 !important;
     }
 
     .windows-container .window {
-        margin-bottom: 0 !important; /* Uniform spacing handled by container gap */
+        margin-bottom: 0 !important; 
         height: auto !important;
     }
     
-    /* Hide horizontal scrolling logic from previous hack */
     .portfolio-grid, .blog-grid, .courses-grid {
         display: flex;
         flex-wrap: wrap !important;
@@ -769,8 +709,8 @@ main .retro-btn {
     }
 
     .window-column {
-        min-height: 0 !important; /* Remove forced height */
-        padding-bottom: 0 !important; /* Remove forced padding */
-        margin-bottom: 0 !important; /* Let windows handle spacing */
+        min-height: 0 !important; 
+        padding-bottom: 0 !important; 
+        margin-bottom: 0 !important; 
     }
 }
