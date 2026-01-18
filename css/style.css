@@ -29,6 +29,13 @@
     box-sizing: border-box;
 }
 
+/* Ensure pixel art looks crisp */
+img {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
 body {
     margin: 0;
     padding: 0;
