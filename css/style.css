@@ -383,6 +383,7 @@ body {
     height: auto;
     border: 2px solid var(--border-dark);
     display: block;
+    image-rendering: auto; /* Fix for blurry/jagged profile image */
 }
 
 /* --- Responsive & Functionality Styles --- */
