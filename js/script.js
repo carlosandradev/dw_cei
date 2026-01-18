@@ -37,12 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Botones de Ventana
-    const controlesVentana = document.querySelectorAll('.window .title-bar-controls');
-
-    controlesVentana.forEach(control => {
-        const botones = control.querySelectorAll('.title-btn');
-    }); 
+ 
 
     // Scroll con Mouse
     const sliders = document.querySelectorAll('.portfolio-grid, .blog-grid');
