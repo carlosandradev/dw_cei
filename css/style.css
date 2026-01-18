@@ -47,7 +47,10 @@ body {
 
 /* Sidebar Styles */
 #sidebar {
-    width: 120px;
+    width: 120px !important;
+    min-width: 120px !important;
+    max-width: 120px !important;
+    flex-shrink: 0 !important; /* Prevent shrinking */
     background-color: var(--retro-gray);
     border-right: 2px solid var(--border-light); /* Bevel effect part 1 */
     box-shadow: 2px 0 0 var(--border-dark); /* Bevel effect part 2 */
@@ -171,12 +174,20 @@ body {
     height: calc(100% - 60px); /* Subtract banner height approx */
 }
 
+.windows-container .window {
+    height: auto !important;       /* Altura según el texto/logo */
+    flex-grow: 0 !important;       /* Prohibido estirarse para llenar huecos */
+    min-height: auto;              /* Resetea mínimos anteriores */
+    margin-bottom: 50px;           /* Espacio de seguridad para no tocar los GIFs */
+}
+
 .window-column {
     display: flex;
     flex-direction: column;
     gap: 10px;
     flex: 1;
     position: relative; /* Enable absolute positioning of children (GIFs) */
+    justify-content: flex-start;
 }
 
 .window-column.large {
@@ -236,7 +247,7 @@ body {
     justify-content: center;
     align-items: center;
     padding-bottom: 2px;
-    cursor: auto;
+    cursor: pointer;
 }
 
 .title-btn:active {
@@ -294,7 +305,7 @@ body {
     font-family: var(--font-pixel);
     font-size: 8px;
     font-weight: bold;
-    cursor: default; /* Decorative only */
+    cursor: pointer;
     box-shadow: 1px 1px 0 var(--retro-black);
 }
 
@@ -437,6 +448,50 @@ body {
     border-color: var(--retro-link);
 }
 
+/* Compact Home Contact Window */
+.home-contact-window {
+    /* 1. Grosor y Color Base (Igual que .window) */
+    border: 2px solid var(--retro-gray) !important;
+
+    /* 2. Efecto 3D Completo (Esto es lo que da el "grosor" visual) */
+    box-shadow: inset 1px 1px 0 var(--border-light),
+                inset -1px -1px 0 var(--border-darker),
+                inset 2px 2px 0 var(--border-light),
+                inset -2px -2px 0 var(--border-dark),
+                2px 2px 5px rgba(0,0,0,0.3) !important;
+
+    /* 3. Fondo Base */
+    background-color: var(--retro-gray) !important;
+
+    /* --- Mantener tus ajustes de tamaño (NO BORRAR) --- */
+    padding: 3px !important;
+    margin-bottom: 90px !important;
+    min-height: auto !important;
+    height: auto !important;
+}
+
+/* Reducir un poco el logo SOLO de esta ventana para ganar espacio */
+/* Reducir un poco el logo SOLO de esta ventana para ganar espacio */
+.home-contact-window .project-window-logo {
+    max-width: 150px !important;    /* Restaurado a 150px */
+    margin: 0 auto !important;      /* Sin margen inferior */
+}
+
+/* Reducir el texto SOLO de esta ventana */
+.home-contact-window p {
+    margin-top: 0 !important;
+    margin-bottom: 5px !important;
+    line-height: 1.2 !important;
+    font-size: 16px !important;
+}
+
+/* Ajuste del Botón/Contenedor */
+.home-contact-window .archive-btn-container {
+    margin-top: 5px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
 /* Inserted Logo for Project Window */
 .project-window-logo {
     display: block;
@@ -552,7 +607,7 @@ main .retro-btn {
     min-width: 0 !important; /* Remove global min-width */
     height: auto;
     min-height: 70px;
-    font-size: 10px !important; /* Small pixel font */
+    font-size: 8px !important; /* Small pixel font - Reduced from 10px */
     padding: 5px 2px !important;
     display: flex;
     flex-direction: column;
