@@ -35,10 +35,7 @@
                     <img src="img/sobreMiPixel.svg" alt="Sobre Mí" style="width: 42px; height: 42px; display: block; margin-bottom: 5px;">
                     Sobre mi
                 </a>
-                <a href="cursos.html" class="retro-btn">
-                    <img src="img/cursosPixel.svg" alt="Cursos" style="width: 42px; height: 42px; display: block; margin-bottom: 5px;">
-                    Cursos
-                </a>
+
                 <a href="contacto.html" class="retro-btn">
                     <img src="img/contactoPixel.svg" alt="Contacto" style="width: 42px; height: 42px; display: block; margin-bottom: 5px;">
                     Contacto
@@ -55,11 +52,11 @@
             </div>
 
             <div class="windows-container">
-                <!-- Left Column (Large Window) -->
+                <!-- Left Column (Portfolio) -->
                 <div class="window-column large">
                     <div class="window" style="height: 100%;">
                         <div class="title-bar">
-                            <div class="title-bar-text">Welcome to Windows95.com</div>
+                            <div class="title-bar-text">Mis Proyectos</div>
                             <div class="title-bar-controls">
                                 <button class="title-btn">_</button>
                                 <button class="title-btn">□</button>
@@ -67,61 +64,62 @@
                             </div>
                         </div>
                         <div class="window-body">
-                            <p>Content for left large window...</p>
-                            <div class="archive-btn-container" style="position: absolute; bottom: 10px; right: 10px;">
-                                <button class="win95-btn">ARCHIVE</button>
+                            <img src="img/ditherProPixel.svg" class="project-window-logo" alt="Proyectos">
+                            <p style="margin-bottom: 20px; font-family: var(--font-terminal); font-size: 18px;">Explora mi colección exclusiva de tiendas desarrolladas en Shopify. Aquí encontrarás ejemplos reales de personalización de temas, configuraciones avanzadas y soluciones e-commerce que he implementado.</p>
+                            <div class="archive-btn-container">
+                                <a href="portafolio.html" class="win95-btn" style="text-decoration: none; color: black;">VER PORTAFOLIO COMPLETO</a>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
-                <!-- Center Column (Music Player) -->
+                <!-- Center Column (About & Contact) -->
                 <div class="window-column" style="flex: 0 0 auto; width: 300px;">
-                    <div class="window">
+                    <!-- About Me Window -->
+                    <div class="window" style="margin-bottom: 20px;">
                         <div class="title-bar">
-                            <div class="title-bar-text"> 
-                                Welcome to Windows95.com
-                            </div>
+                            <div class="title-bar-text">Sobre Mí</div>
                             <div class="title-bar-controls">
-                                <button class="title-btn" aria-label="Minimize">_</button>
-                                <button class="title-btn" aria-label="Maximize">□</button>
-                                <button class="title-btn" aria-label="Close">×</button>
+                                <button class="title-btn">_</button>
+                                <button class="title-btn">□</button>
+                                <button class="title-btn">×</button>
                             </div>
                         </div>
                         <div class="window-body">
-                            <div class="music-content">
-                                <div class="album-info">
-                                    <div class="album-art-placeholder">💾</div>
-                                    <div>
-                                        <strong>Jazztronik</strong><br>
-                                        Inner Flight<br>
-                                        <a href="#" style="color:blue">[Counterpoint]</a>
-                                    </div>
-                                </div>
-                                <div>
-                                    🔊 <a href="#" style="color:blue">Dizzin'</a>
-                                </div>
-                                <div style="margin-top: 10px;">
-                                    previous vinyls of the week:
-                                    <select style="width: 100%;">
-                                        <option>Inner Flight</option>
-                                    </select>
-                                </div>
-                                <div class="archive-btn-container">
-                                    <button class="win95-btn">ARCHIVE</button>
-                                </div>
+                            <div style="text-align: center; margin-bottom: 5px;">
+                                <img src="img/cADither.png" alt="Carlos Dither" style="width: 100px; height: auto; display: block; margin: 0 auto; border: 2px solid var(--border-dark);">
+                            </div>
+                            <p>E-commerce Specialist y Desarrollador Web. Transformo problemas técnicos en soluciones estratégicas para tu negocio. Experto en Shopify y Frontend.</p>
+                            <div class="archive-btn-container">
+                                <a href="sobre-mi.html" class="win95-btn" style="text-decoration: none; color: black;">CONOCER MÁS</a>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Contact Window -->
+                    <div class="window">
+                        <div class="title-bar">
+                            <div class="title-bar-text">Contacto</div>
+                            <div class="title-bar-controls">
+                                <button class="title-btn">_</button>
+                                <button class="title-btn">□</button>
+                                <button class="title-btn">×</button>
+                            </div>
+                        </div>
+                        <div class="window-body">
+                            <p>¿Tienes un proyecto en mente? Escríbeme para colaborar.</p>
+                            <div class="archive-btn-container">
+                                <a href="contacto.html" class="win95-btn" style="text-decoration: none; color: black;">CONTACTAR</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Right Column (Large Window) -->
+                <!-- Right Column (Blog) -->
                  <div class="window-column large">
                     <div class="window" style="height: 100%;">
                         <div class="title-bar">
-                            <div class="title-bar-text">Welcome to Windows95.com</div>
+                            <div class="title-bar-text">Blog Personal</div>
                             <div class="title-bar-controls">
                                 <button class="title-btn">_</button>
                                 <button class="title-btn">□</button>
@@ -129,13 +127,13 @@
                             </div>
                         </div>
                         <div class="window-body">
-                            <!-- Empty content for now as in the image's right window -->
-                            <div class="archive-btn-container" style="position: absolute; bottom: 10px; right: 10px;">
-                                <button class="win95-btn">ARCHIVE</button>
+                            <img src="img/ditherBlogPixel.svg" class="project-window-logo" alt="Blog Personal">
+                            <p style="margin-bottom: 20px; font-family: var(--font-terminal); font-size: 18px;">Mis artículos y análisis sobre el ecosistema digital. Lee sobre trucos de Shopify, una comparativa técnica Shopify vs WordPress, y las Tendencias E-commerce 2026.</p>
+                            <div class="archive-btn-container">
+                                <a href="blog.html" class="win95-btn" style="text-decoration: none; color: black;">LEER ARTÍCULOS</a>
                             </div>
                         </div>
                     </div>
-
                  </div>
             </div>
 

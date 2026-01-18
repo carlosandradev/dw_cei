@@ -33,37 +33,50 @@ document.addEventListener('DOMContentLoaded', () => {
         const win = controls.closest('.window');
         const buttons = controls.querySelectorAll('.title-btn');
 
-        if (buttons.length >= 3) {
-            const minimizeBtn = buttons[0]; // _
-            const maximizeBtn = buttons[1]; // □
-            const closeBtn = buttons[2];    // ×
+            /* 
+               Window controls are now purely decorative per user request.
+               Functionality removed.
+            */
+            const minimizeBtn = buttons[0]; 
+            const maximizeBtn = buttons[1]; 
+            const closeBtn = buttons[2];
 
-            // Minimize (_)
-            minimizeBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent bubbling
-                const body = win.querySelector('.window-body');
-                if (body) {
-                    if (body.style.display === 'none') {
-                        body.style.display = 'block';
-                    } else {
-                        body.style.display = 'none';
-                    }
-                }
-            });
+    }); // Closing forEach loop
 
-            // Maximize (□)
-            maximizeBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                win.classList.toggle('maximized');
-            });
+    // --- Drag to Scroll Logic (Desktop) ---
+    const sliders = document.querySelectorAll('.portfolio-grid, .blog-grid');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
 
-            // Close (×)
-            closeBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                // Find the parent column if it exists to hide the whole thing if needed, 
-                // but usually closing the window just hides the .window element
-                win.style.display = 'none';
-            });
-        }
+    sliders.forEach(slider => {
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.add('active'); // You might want to style cursor: grabbing here
+            slider.style.cursor = 'grabbing';
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.classList.remove('active');
+            slider.style.cursor = 'default';
+        });
+
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.classList.remove('active');
+            slider.style.cursor = 'default';
+        });
+
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll-fast
+            slider.scrollLeft = scrollLeft - walk;
+        });
     });
-});
+
+}); // Closing DOMContentLoaded
