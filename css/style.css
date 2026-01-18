@@ -264,6 +264,8 @@ body {
     padding: 10px;
     position: relative;
     color: var(--retro-text);
+    display: flex; /* Flex layout to align internals */
+    flex-direction: column; /* Stack vertically */
 }
 
 .music-content {
@@ -367,24 +369,47 @@ body {
     white-space: nowrap;
 }
 /* Blog, Portfolio, and Courses Grid Styles */
-.blog-grid, .portfolio-grid, .courses-grid {
+.blog-grid, .courses-grid {
     display: flex;
     flex-direction: column; /* Stacks vertically */
     height: calc(100% - 60px); /* Fill available space */
-    justify-content: space-between; 
+    justify-content: flex-start; /* Start from top */
     padding: 20px;
-    gap: 0; /* Margin bottom handles spacing now */
+    gap: 20px; /* Explicit gap */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* --- Portfolio Specific Grid (3 Columns) --- */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 Equal Columns */
+    grid-template-rows: auto; /* Auto height rows */
+    gap: 20px;
+    padding: 20px 40px; /* More horizontal padding to squeeze the grid slightly */
+    height: calc(100% - 60px);
+    overflow-y: auto;
+    align-content: start; 
+}
+
+.portfolio-grid .content-window {
+    width: 100%;
+    max-width: 90%; /* "Less wide" - slight constraint inside the cell */
+    margin: 0 auto; /* Center in the cell */
+    min-height: 480px; /* "More elongated" - taller fixed height */
+    height: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Specific overwrite for content windows inside these grids */
+/* Specific overwrite for content windows inside these grids */
 .blog-grid .content-window, 
-.portfolio-grid .content-window, 
 .courses-grid .content-window {
-    flex: 1; /* Grow to fill equal space */
+    flex: 0 0 auto; /* Do not stretch, take needed height */
     width: 100%;
     max-width: 800px; /* Optional centering limit */
-    margin: 0 auto 10px auto; /* Centered with bottom margin */
-    min-height: 0; /* Prevent flex overflow issues */
+    margin: 0 auto; /* Centered */
+    height: auto; /* Content driven height */
 }
 
 /* KEEP GENERIC .content-window for other usages if any, or overrides below */
@@ -727,10 +752,14 @@ main .retro-btn {
 
     .content-window {
         scroll-snap-align: center; /* Snap to center */
-        flex: 0 0 85%; /* Show 85% of width to indicate scrollability */
-        width: 85% !important; /* Force width */
-        flex-shrink: 0; /* Prevent shrinking */
+        flex: 0 0 75%; /* Reduced from 85% to be "less wide" */
+        width: 75% !important; 
+        height: 500px !important; /* Reduced from 600px as requested */
+        min-height: 0 !important;
+        flex-shrink: 0; 
         margin-right: 15px;
+        display: flex;
+        flex-direction: column;
     }
 
     /* Footer Badges Horizontal Layout */
@@ -755,5 +784,23 @@ main .retro-btn {
 
     .profile-image img {
         margin: 0 auto 20px auto; /* Center image and add bottom margin */
+    }
+
+    /* --- Standardized Mobile Spacing Reset --- */
+    .home-contact-window {
+        margin-bottom: 20px !important; /* Reset from desktop 90px */
+        padding: 5px 10px !important; /* Provide consistent padding */
+        min-height: 0 !important;
+    }
+
+    .windows-container .window {
+        margin-bottom: 20px !important; /* Uniform spacing */
+        height: auto !important;
+    }
+
+    .window-column {
+        min-height: 0 !important; /* Remove forced height */
+        padding-bottom: 0 !important; /* Remove forced padding */
+        margin-bottom: 0 !important; /* Let windows handle spacing */
     }
 }
